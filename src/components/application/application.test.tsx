@@ -20,6 +20,18 @@ describe('Application', () => {
         const paragraphElement=screen.getByText('All fields are mandatory');
         expect(paragraphElement).toBeInTheDocument();
 
+        //using substring method
+        const substringElement=screen.getByText('mandatory',{exact:false});
+        expect(substringElement).toBeInTheDocument();
+
+        //using regex 
+        const substringElementRegex=screen.getByText(/mandatory/i);
+        expect(substringElementRegex).toBeInTheDocument();
+
+        //using custom function
+        const substringElementFunc=screen.getByText((content)=>content.includes('mandatory'));
+        expect(substringElementFunc).toBeInTheDocument();
+
         const titleElement=screen.getByTitle('close');
         expect(titleElement).toBeInTheDocument();
 
